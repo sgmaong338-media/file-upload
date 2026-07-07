@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: smmc-file-upload
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+      - key: MAX_UPLOAD_MB
+        value: 50
+      - key: ADMIN_TOKEN
+        sync: false
+      - key: GOOGLE_OAUTH_CLIENT_ID
+        sync: false
+      - key: GOOGLE_OAUTH_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_OAUTH_REFRESH_TOKEN
+        sync: false
+      - key: GOOGLE_OAUTH_REDIRECT_URI
+        sync: false
+    disk:
+      name: smmc-file-upload-data
+      mountPath: /var/data
+      sizeGB: 1
+
+databases: []
+

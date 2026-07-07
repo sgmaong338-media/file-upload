@@ -1,0 +1,6 @@
+node_modules/
+.env
+oauth-client.json
+service-account.json
+*.log
+
