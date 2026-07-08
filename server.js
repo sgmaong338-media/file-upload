@@ -20,7 +20,7 @@ const PORT = Number(process.env.PORT || 3000);
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 const MAX_UPLOAD_MB = Number(process.env.MAX_UPLOAD_MB || 50);
 const DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(__dirname, 'data');
-const CONFIG_PATH = process.env.CONFIG_PATH
+let CONFIG_PATH = process.env.CONFIG_PATH
   ? path.resolve(process.env.CONFIG_PATH)
   : path.join(DATA_DIR, 'config.json');
 const DEFAULT_CONFIG_PATH = path.join(__dirname, 'data', 'config.json');
@@ -29,7 +29,7 @@ const UPLOAD_TMP_DIR = path.join(os.tmpdir(), 'drive-uploader');
 const DRIVE_SCOPE = 'https://www.googleapis.com/auth/drive';
 
 await fs.mkdir(UPLOAD_TMP_DIR, { recursive: true });
-await fs.mkdir(path.dirname(CONFIG_PATH), { recursive: true });
+await ensureWritableConfigDir();
 
 const app = express();
 app.use(helmet({ contentSecurityPolicy: false }));
@@ -86,6 +86,27 @@ async function readConfig() {
 async function writeConfig(config) {
   await fs.mkdir(path.dirname(CONFIG_PATH), { recursive: true });
   await fs.writeFile(CONFIG_PATH, `${JSON.stringify(config, null, 2)}\n`);
+}
+
+async function ensureWritableConfigDir() {
+  const configDir = path.dirname(CONFIG_PATH);
+
+  try {
+    await fs.mkdir(configDir, { recursive: true });
+    return;
+  } catch (error) {
+    if (!['EACCES', 'EROFS', 'EPERM'].includes(error.code)) {
+      throw error;
+    }
+  }
+
+  const fallbackPath = path.join(__dirname, 'data', 'config.json');
+  console.warn(
+    `Cannot write to ${configDir}. Falling back to ${fallbackPath}. ` +
+      'On Render, add a persistent disk mounted at /var/data to keep admin changes after redeploy.'
+  );
+  CONFIG_PATH = fallbackPath;
+  await fs.mkdir(path.dirname(CONFIG_PATH), { recursive: true });
 }
 
 async function ensureConfigFile() {
