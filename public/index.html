@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>smmc-file-upload - 蒙恩堂文件管理系统</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="site-shell">
+      <section class="hero-stage" aria-label="蒙恩堂文件上传">
+        <div class="topline">
+          <span class="brand-mark">smmc-file-upload</span>
+          <span id="targetLabel" class="target-label">SYNC READY</span>
+        </div>
+
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">蒙恩堂文件管理系统</p>
+            <h1 id="eventTitle">文件上传</h1>
+            <p class="intro">
+              按照活动链接上传文件，系统会自动送到对应的 Google Drive 文件夹。
+            </p>
+          </div>
+
+          <form id="uploadForm" class="upload-console">
+            <label class="drop-zone" for="fileInput">
+              <input id="fileInput" name="file" type="file" />
+              <span class="upload-symbol" aria-hidden="true"></span>
+              <strong id="fileLabel">选择文件</strong>
+              <small>也可以把文件拖放到这里</small>
+            </label>
+            <button class="primary-action" type="submit">上传文件</button>
+            <div id="uploadStatus" class="status" role="status"></div>
+          </form>
+        </div>
+
+        <div class="signal-strip" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
+    </main>
+
+    <script src="/upload.js" type="module"></script>
+  </body>
+</html>

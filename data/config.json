@@ -1,0 +1,26 @@
+{
+  "activeEventId": "service",
+  "events": [
+    {
+      "id": "acs",
+      "title": "ACS 联合祷告会",
+      "folderId": "1RIzoYDYahetBFvG2OBIpxGXdHrpMsaPo",
+      "description": "ACS",
+      "enabled": true
+    },
+    {
+      "id": "soar3-0",
+      "title": "SOAR3.0",
+      "folderId": "1l-icqn8km4QhLI238qphIihgdgBRITGw",
+      "description": "",
+      "enabled": true
+    },
+    {
+      "id": "service",
+      "title": "主日影片",
+      "folderId": "1beFsIMulk3Fx7efgt60ioBxkqAREZOxw",
+      "description": "",
+      "enabled": true
+    }
+  ]
+}
