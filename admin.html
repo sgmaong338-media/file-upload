@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>smmc-file-upload Admin - 蒙恩堂文件管理系统</title>
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="site-shell admin-shell">
+      <section class="admin-stage" aria-label="管理员设置">
+        <div class="topline">
+          <span class="brand-lockup">
+            <img class="brand-logo" src="/logo.svg" alt="" />
+            <span class="brand-mark">smmc-file-upload admin</span>
+          </span>
+          <a class="plain-link" href="/">上传首页</a>
+        </div>
+
+        <div class="admin-layout">
+          <header class="admin-copy">
+            <p class="eyebrow">蒙恩堂文件管理系统</p>
+            <h1>活动上传链接管理</h1>
+            <p class="intro">为不同活动建立不同上传链接，并指定各自的 Google Drive 文件夹。</p>
+          </header>
+
+          <form id="adminForm" class="admin-console">
+            <label class="field">
+              <span>管理员密钥</span>
+              <input id="adminToken" type="password" placeholder="ADMIN_TOKEN" autocomplete="current-password" />
+            </label>
+
+            <div class="preset-head">
+              <strong>活动列表</strong>
+              <button id="addEvent" type="button" class="secondary-action">新增活动</button>
+            </div>
+
+            <div id="eventList" class="folder-list"></div>
+
+            <div id="configStatus" class="status" role="status"></div>
+          </form>
+        </div>
+
+        <section class="existing-events" aria-label="Existing events">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">EXISTING LINKS</p>
+              <h2>Existing events</h2>
+            </div>
+          </div>
+          <div id="existingEventCards" class="event-card-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/admin.js" type="module"></script>
+  </body>
+</html>
