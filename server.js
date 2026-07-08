@@ -37,6 +37,10 @@ app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
@@ -390,15 +394,26 @@ app.get('/api/auth/google/callback', async (req, res, next) => {
         .send('Google did not return a refresh token. Try the authorization link again.');
     }
 
-    await setEnvValue('GOOGLE_OAUTH_REFRESH_TOKEN', tokens.refresh_token);
+    await setEnvValue('GOOGLE_OAUTH_REFRESH_TOKEN', tokens.refresh_token).catch((error) => {
+      console.warn(`Could not write GOOGLE_OAUTH_REFRESH_TOKEN to .env: ${error.message}`);
+    });
 
     return res.send(`
       <!doctype html>
       <html lang="en">
-        <head><meta charset="utf-8"><title>Google Drive connected</title></head>
-        <body style="font-family: system-ui; padding: 32px;">
+        <head>
+          <meta charset="utf-8">
+          <title>Google Drive connected</title>
+          <style>
+            body { font-family: system-ui, sans-serif; line-height: 1.5; padding: 32px; max-width: 900px; }
+            textarea { box-sizing: border-box; font: 14px/1.5 ui-monospace, monospace; min-height: 120px; width: 100%; }
+            code { background: #f2f4f7; border-radius: 4px; padding: 2px 5px; }
+          </style>
+        </head>
+        <body>
           <h1>Google Drive connected</h1>
-          <p>You can close this tab and upload files now.</p>
+          <p>Copy this refresh token into Render as <code>GOOGLE_OAUTH_REFRESH_TOKEN</code>, then redeploy.</p>
+          <textarea readonly>${tokens.refresh_token}</textarea>
           <p><a href="/">Back to upload page</a></p>
         </body>
       </html>
