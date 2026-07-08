@@ -107,6 +107,21 @@ textarea {
   text-transform: uppercase;
 }
 
+.brand-lockup {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(215, 255, 74, 0.18));
+}
+
 .brand-mark {
   color: var(--lime);
 }
