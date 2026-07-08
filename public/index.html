@@ -35,6 +35,15 @@
               <small>也可以把文件拖放到这里</small>
             </label>
             <button class="primary-action" type="submit">上传文件</button>
+            <div id="uploadProgress" class="upload-progress" aria-hidden="true">
+              <div class="progress-meta">
+                <span>上传进度</span>
+                <strong id="progressValue">0%</strong>
+              </div>
+              <div class="progress-track">
+                <span id="progressBar"></span>
+              </div>
+            </div>
             <div id="uploadStatus" class="status" role="status"></div>
           </form>
         </div>

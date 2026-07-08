@@ -274,6 +274,47 @@ h3 {
   color: #101406;
 }
 
+.upload-progress {
+  display: none;
+  gap: 8px;
+}
+
+.upload-progress.is-visible {
+  display: grid;
+}
+
+.progress-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.progress-meta strong {
+  color: var(--lime);
+}
+
+.progress-track {
+  height: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(85, 247, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.progress-track span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--lime));
+  box-shadow: 0 0 18px rgba(85, 247, 255, 0.36);
+  transition: width 140ms ease;
+}
+
 .secondary-action {
   min-height: 40px;
   padding: 0 16px;
