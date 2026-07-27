@@ -315,6 +315,59 @@ h3 {
   transition: width 140ms ease;
 }
 
+.receipt-card {
+  display: grid;
+  gap: 14px;
+  border: 1px solid rgba(102, 255, 194, 0.28);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(102, 255, 194, 0.1), rgba(85, 247, 255, 0.05)),
+    rgba(255, 255, 255, 0.04);
+  padding: 14px;
+}
+
+.receipt-card[hidden] {
+  display: none;
+}
+
+.receipt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--success);
+  font-weight: 900;
+}
+
+.receipt-head span {
+  color: var(--ink);
+}
+
+.receipt-details {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.receipt-details div {
+  display: grid;
+  gap: 2px;
+}
+
+.receipt-details dt {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.receipt-details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
 .secondary-action {
   min-height: 40px;
   padding: 0 16px;

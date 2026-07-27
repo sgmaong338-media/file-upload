@@ -45,6 +45,31 @@
               </div>
             </div>
             <div id="uploadStatus" class="status" role="status"></div>
+            <section id="receiptCard" class="receipt-card" aria-live="polite" hidden>
+              <div class="receipt-head">
+                <span>上传确认</span>
+                <strong>已完成</strong>
+              </div>
+              <dl class="receipt-details">
+                <div>
+                  <dt>活动</dt>
+                  <dd id="receiptEvent">-</dd>
+                </div>
+                <div>
+                  <dt>文件</dt>
+                  <dd id="receiptFile">-</dd>
+                </div>
+                <div>
+                  <dt>时间</dt>
+                  <dd id="receiptTime">-</dd>
+                </div>
+                <div>
+                  <dt>确认编号</dt>
+                  <dd id="receiptId">-</dd>
+                </div>
+              </dl>
+              <button id="copyReceipt" class="secondary-action" type="button">复制确认信息</button>
+            </section>
           </form>
         </div>
 
